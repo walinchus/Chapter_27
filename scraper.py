@@ -3,7 +3,7 @@ import csv
 #guidance on csv library at https://scraperwiki.com/docs/python/python_csv_guide/
 
 #scrape the csv file into new variable 'data'
-data = scraperwiki.scrape('https://data.birmingham.gov.uk/dataset/14492d37-1a77-4d46-9204-27363fc62149/resource/bacf38dd-3530-4c95-a0c3-83e21c9b2259/download/sgmsreportsvcsfreportsvcsfreports201415vcsfreport2014qtr1final.csv')
+data = scraperwiki.scrape('https://data.birmingham.gov.uk/dataset/e9c314fc-fb6d-4189-a19c-7eec962733a8/resource/6b00d8f0-3855-4be0-ae2b-6775df64010a/download/traffic-signals-dec2016.csv')
 
 #first attempt generated an error: "SqliteError: Binary strings must be utf-8 encoded"
 #So we need to trace which part of our data is responsible. We're going to 
@@ -26,17 +26,13 @@ for row in reader:
     print type(row[4])
     print type(row[5])
     print type(row[6])
-    print type(row[7])
-    if row['funding'] is not None:
-      row['funding'] = row['funding'].decode("latin-1")
-    record['ref'] = row[0]
-    record['organisation'] = row[1]
-    record['status'] = row[2]
-    record['start_date'] = row[3]
-    record['end_date'] = row[4]
-    record['revised_end'] = row[5]
-    record['directorate'] = row[6]
-    record['funding'] = row[7].decode("latin-1")
+    record['usrn'] = row[0]
+    record['row'] = row[1]
+    record['district'] = row[2]
+    record['ward'] = row[3]
+    record['captured by'] = row[4]
+    record['longitude'] = row[5]
+    record['latitude'] = row[6]
     idno += 1
     record['ID'] = idno
     print record
